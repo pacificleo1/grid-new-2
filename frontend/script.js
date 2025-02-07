@@ -1,4 +1,6 @@
 const API_URL = "https://grid-new-2-backend-3.onrender.com";  // Insert this at the top
+const BACKEND_URL = "https://grid-new-2-backend-3.onrender.com";
+
 
 document.getElementById("startGame").addEventListener("click", () => {
     const playerName = document.getElementById("playerName").value;
