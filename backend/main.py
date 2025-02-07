@@ -1,7 +1,11 @@
-
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import random
 
-# Enable CORS for frontend
+# Define FastAPI app
+app = FastAPI()
+
+# Enable CORS (Allow frontend to communicate with backend)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -10,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Store game states
 games = {}
 
 @app.post("/start-game/")
@@ -28,7 +33,6 @@ def start_game(player_name: str, rows: int, cols: int):
     }
     
     return {"message": f"Game started for {player_name}", "game_id": game_id, "rows": rows, "cols": cols}
-
 
 @app.post("/player-move/")
 def player_move(game_id: str, row: int, col: int):
@@ -78,3 +82,8 @@ def check_winner(grid, symbol):
         return True
 
     return False
+
+# Add this to ensure the app runs correctly on Render
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=10000, reload=True)
