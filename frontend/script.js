@@ -1,7 +1,9 @@
+const API_URL = "https://grid-new-2-backend-3.onrender.com";  // Insert this at the top
+
 document.getElementById("startGame").addEventListener("click", () => {
     const playerName = document.getElementById("playerName").value;
     
-    fetch("http://127.0.0.1:8000/start-game/", {
+    fetch(`${API_URL}/start-game/`, {  // Replace hardcoded URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ player_name: playerName, rows: 3, cols: 3 })
@@ -30,7 +32,7 @@ function generateGrid(rows, cols, gameId) {
 }
 
 function makeMove(row, col, gameId) {
-    fetch("http://127.0.0.1:8000/player-move/", {
+    fetch(`${API_URL}/player-move/`, {  // Replace hardcoded URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ game_id: gameId, row: row, col: col })
