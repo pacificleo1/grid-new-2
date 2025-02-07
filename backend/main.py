@@ -1,8 +1,5 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import random
 
-app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
 # Enable CORS for frontend
 app.add_middleware(
